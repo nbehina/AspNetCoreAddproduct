@@ -20,7 +20,6 @@ namespace AspNetCoreAddproduct.Services
             .Where(x => x.IsDone == false)
             .ToArrayAsync();
         }
-
         public async Task<bool> AddItemAsync(AddproductItem newItem)
         {
             newItem.Id = Guid.NewGuid();
@@ -30,7 +29,9 @@ namespace AspNetCoreAddproduct.Services
             var saveResult = await _context.SaveChangesAsync();
             return saveResult == 1;
         }
-
     }
 }
+
+
+
 

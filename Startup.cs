@@ -29,6 +29,10 @@ namespace AspNetCoreAddproduct
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
+                 options.UseSqlite(
+                     Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -38,7 +42,7 @@ namespace AspNetCoreAddproduct
             services.AddMvc();
 
             //Dependency Injection
-            services.AddSingleton<IAddproductItemService, AddproductItemService>();
+            services.AddScoped<IAddproductItemService, AddproductItemService>();
         }
 
 
